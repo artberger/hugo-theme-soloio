@@ -49,11 +49,11 @@
 	{{- $numn := add $num $.count }}
 
 	{{- (printf "<h%d>" $numn)|safeHTML}}
-		<p><a href="{{.URL}}" >{{ .Title }}</a>: {{.Description}}</p>
+		<p><a href="{{.RelPermalink}}" >{{ .Title }}</a>: {{.Description}}</p>
 	{{- (printf "</h%d>" $numn)|safeHTML}}
 {{- else}}
 	{{- (printf "<%s>" $.style)|safeHTML}}
-	<p><a href="{{print .Site.Data.Solo.DocsVersion .URL}}" >{{ .Title }}</a>: {{.Description}}</p>
+	<p><a href="{{print .Site.Data.Solo.DocsVersion .RelPermalink}}" >{{ .Title }}</a>: {{.Description}}</p>
 	{{- (printf "</%s>" $.style)|safeHTML}}
 {{- end}}
 
