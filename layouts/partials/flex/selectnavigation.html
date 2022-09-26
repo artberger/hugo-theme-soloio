@@ -15,13 +15,12 @@
 {{- $level := .level }}
  {{- with .sect}}
   {{- if .IsSection}}
-    <option value="{{ .Site.Data.Solo.DocsVersion }}{{ .RelPermalink}}" {{if eq .URL $currentNode.URL}} selected{{end}}>
-      {{if gt $level 1 }}
-        {{- range after 1 (seq $level)}}-{{ end }} 
-      {{end}} {{.Title}}
-    </option>
-
-    {{- if or (.IsAncestor $currentNode) (.Params.alwaysopen) }} <!-- dig into sub levels only if active or menu is always ON-->
+    <option value="{{ .Site.Data.Solo.DocsVersion }}{{ .RelPermalink}}" {{if eq .Permalink $currentNode.Permalink}} selected{{end}}>
+  {{if gt $level 1 }}
+    {{- range after 1 (seq $level)}}-{{ end }} 
+  {{end}} {{.Title}}</option>
+  
+  {{- if or (.IsAncestor $currentNode) (.Params.alwaysopen) }} <!-- dig into sub levels only if active or menu is always ON-->
 
       {{- $numberOfPages := (add (len .Pages) (len .Sections)) }}
       {{- if ne $numberOfPages 0 }}
@@ -50,9 +49,8 @@
     {{end}}
   {{- else}}
     {{- if not .Params.Hidden }}
-      <option value="{{ .Site.Data.Solo.DocsVersion }}{{ .RelPermalink}}" {{if eq .URL $currentNode.URL}} selected{{end}}> 
-        {{- range after 1 (seq $level)}}-{{ end }} {{.Title}}
-      </option>
+      <option value="{{ .Site.Data.Solo.DocsVersion }}{{ .RelPermalink}}" {{if eq .Permalink $currentNode.Permalink}} selected{{end}}> 
+{{- range after 1 (seq $level)}}-{{ end }} {{.Title}}</option>
     {{- end}}
   {{- end}}
  {{- end}}

@@ -32,8 +32,7 @@
       </a>
 
       <br />
-
-      {{- partial "menu.html" . }}
+      {{- partialCached "menu.html" . }}
     </ul>
     
     {{- partial "language-selector.html" . }}
@@ -42,14 +41,22 @@
     </section>
   </aside>
   <section class="page">
-  {{ partial "banner.html" . }} 
-  <div class="nav-select">
-    <center>Navigation : 
-      <select onchange="javascript:location.href = this.value;">
-        {{partial "flex/selectnavigation.html" .}}
-      </select>
-    </center>
-  </div>
-  
+    {{ partial "banner.html" . }} 
+    <div class="nav-select">
+      <center>Navigation : 
+        <select onchange="javascript:location.href = this.value;">
+          {{partial "flex/selectnavigation.html" .}}
+        </select>
+      </center>
+    </div>
+
+    {{- if not .Site.Params.disableSearch}}
+      <div>
+        <div class="searchbox">
+          <input data-search-input id="search-by" type="text" placeholder="{{T "Search-placeholder"}}">
+        </div>
+      </div>
+    {{- end}}
+    
 
   {{if not .IsHome}}<h1>{{.Title}}</h1>{{end}}
